@@ -17,24 +17,35 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="demo">
+  <div class='demo'>
     <h1>API Demo</h1>
     <p>This page demonstrates how to call the backend API using fetch.</p>
 
-    <div v-if="message" class="success">
+    <div
+      v-if='message'
+      class='success'
+    >
       <p>Backend says:</p>
       <h2>{{ message }}</h2>
     </div>
 
-    <div v-if="error" class="error">
+    <div
+      v-if='error'
+      class='error'
+    >
       <p>Error: {{ error }}</p>
       <p>Make sure the backend is running (npm start)</p>
     </div>
 
-    <div class="info">
+    <div class='info'>
       <h3>How it works</h3>
       <p>Check <code>src/api/demo.js</code> — it uses native <code>fetch</code> to call <code>/api/hello</code>.</p>
-      <p>API docs: <a href="http://localhost:3000/docs" target="_blank">http://localhost:3000/docs</a></p>
+      <p>
+        API docs: <a
+          href='http://localhost:3000/docs'
+          target='_blank'
+        >http://localhost:3000/docs</a>
+      </p>
     </div>
   </div>
 </template>
