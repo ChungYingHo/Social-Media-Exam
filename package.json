@@ -1,0 +1,13 @@
+{
+  "name": "2026-social-media",
+  "private": true,
+  "workspaces": ["backend", "frontend"],
+  "scripts": {
+    "start": "concurrently -n BE,FE -c blue,green \"cd backend && npx tsx src/index.ts\" \"cd frontend && npx vite\"",
+    "seed": "npm run seed --prefix backend",
+    "test": "npm test --prefix backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
