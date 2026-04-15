@@ -11,6 +11,7 @@
     "test": "npm test --prefix backend"
   },
   "devDependencies": {
+    "@vicons/ionicons5": "^0.13.0",
     "concurrently": "^9.1.2",
     "naive-ui": "^2.44.1",
     "vfonts": "^0.0.3"

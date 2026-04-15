@@ -1,171 +1,92 @@
 <script setup>
-import WelcomeItem from '@/components/WelcomeItem.vue'
-import DocumentationIcon from '@/components/icons/IconDocumentation.vue'
-import ToolingIcon from '@/components/icons/IconTooling.vue'
-import EcosystemIcon from '@/components/icons/IconEcosystem.vue'
-import CommunityIcon from '@/components/icons/IconCommunity.vue'
-import SupportIcon from '@/components/icons/IconSupport.vue'
+import { ref } from 'vue'
+import { NSpace, NInput, NButton } from 'naive-ui'
 
-const openReadmeInEditor = () => fetch('/__open-in-editor?file=README.md')
+const account = ref('')
+const userName = ref('')
+const userEmail = ref('')
+const password = ref('')
+const passwordConfirm = ref('')
+
 </script>
 
 <template>
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
-    <template #heading>
-      Documentation
-    </template>
+  <div class='loginPages'>
+    <p class='title'>
+      建立你的帳號
+    </p>
 
-    Vue’s
-    <a
-      href='https://vuejs.org/'
-      rel='noopener'
-      target='_blank'
-    >official documentation</a>
-    provides you with all information you need to get started.
-  </WelcomeItem>
+    <n-space vertical>
+      <div class='inputAccount'>
+        <label class='inputLabel'>帳號:</label>
+        <n-input
+          v-model:value='account'
+          borderless
+          class='account'
+          placeholder='請輸入帳號'
+          type='text'
+        />
+      </div>
 
-  <WelcomeItem>
-    <template #icon>
-      <ToolingIcon />
-    </template>
-    <template #heading>
-      Tooling
-    </template>
+      <div class='inputUserName'>
+        <label class='inputLabel'>名稱:</label>
+        <n-input
+          v-model:value='userEmail'
+          borderless
+          class='email'
+          placeholder='請輸入使用者名稱'
+          type='text'
+        />
+      </div>
+      
+      <div class='inputEmail'>
+        <label class='inputLabel'>Email:</label>
+        <n-input
+          v-model:value='userName'
+          borderless
+          class='userName'
+          placeholder='請輸入Email'
+          type='text'
+        />
+      </div>
+      
+      <div class='inputPassword'>
+        <label class='inputLabel'>密碼:</label>
+        <n-input
+          v-model:value='password'
+          borderless
+          class='password'
+          placeholder='請輸入密碼'
+          type='password'
+        />
+      </div>
+      
+      <div class='inputPasswordConfirm'>
+        <label class='inputLabel'>密碼確認:</label>
+        <n-input
+          v-model:value='passwordConfirm'
+          borderless
+          class='passwordConfirm'
+          placeholder='請再次輸入密碼'
+          type='password'
+        />
+      </div>
 
-    This project is served and bundled with
-    <a
-      href='https://vite.dev/guide/features.html'
-      rel='noopener'
-      target='_blank'
-    >Vite</a>. The
-    recommended IDE setup is
-    <a
-      href='https://code.visualstudio.com/'
-      rel='noopener'
-      target='_blank'
-    >VSCode</a>
-    +
-    <a
-      href='https://github.com/vuejs/language-tools'
-      rel='noopener'
-      target='_blank'
-    >Vue - Official</a>. If you need to test your components and web pages, check out
-    <a
-      href='https://vitest.dev/'
-      rel='noopener'
-      target='_blank'
-    >Vitest</a>
-    and
-    <a
-      href='https://www.cypress.io/'
-      rel='noopener'
-      target='_blank'
-    >Cypress</a>
-    /
-    <a
-      href='https://playwright.dev/'
-      rel='noopener'
-      target='_blank'
-    >Playwright</a>.
-
-    <br>
-
-    More instructions are available in
-    <a
-      href='javascript:void(0)'
-      @click='openReadmeInEditor'
-    ><code>README.md</code></a>.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <EcosystemIcon />
-    </template>
-    <template #heading>
-      Ecosystem
-    </template>
-
-    Get official tools and libraries for your project:
-    <a
-      href='https://pinia.vuejs.org/'
-      rel='noopener'
-      target='_blank'
-    >Pinia</a>,
-    <a
-      href='https://router.vuejs.org/'
-      rel='noopener'
-      target='_blank'
-    >Vue Router</a>,
-    <a
-      href='https://test-utils.vuejs.org/'
-      rel='noopener'
-      target='_blank'
-    >Vue Test Utils</a>, and
-    <a
-      href='https://github.com/vuejs/devtools'
-      rel='noopener'
-      target='_blank'
-    >Vue Dev Tools</a>. If
-    you need more resources, we suggest paying
-    <a
-      href='https://github.com/vuejs/awesome-vue'
-      rel='noopener'
-      target='_blank'
-    >Awesome Vue</a>
-    a visit.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <CommunityIcon />
-    </template>
-    <template #heading>
-      Community
-    </template>
-
-    Got stuck? Ask your question on
-    <a
-      href='https://chat.vuejs.org'
-      rel='noopener'
-      target='_blank'
-    >Vue Land</a>
-    (our official Discord server), or
-    <a
-      href='https://stackoverflow.com/questions/tagged/vue.js'
-      rel='noopener'
-      target='_blank'
-    >StackOverflow</a>. You should also follow the official
-    <a
-      href='https://bsky.app/profile/vuejs.org'
-      rel='noopener'
-      target='_blank'
-    >@vuejs.org</a>
-    Bluesky account or the
-    <a
-      href='https://x.com/vuejs'
-      rel='noopener'
-      target='_blank'
-    >@vuejs</a>
-    X account for latest news in the Vue world.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <SupportIcon />
-    </template>
-    <template #heading>
-      Support Vue
-    </template>
-
-    As an independent project, Vue relies on community backing for its sustainability. You can help
-    us by
-    <a
-      href='https://vuejs.org/sponsor/'
-      rel='noopener'
-      target='_blank'
-    >becoming a sponsor</a>.
-  </WelcomeItem>
+      <n-button
+        color='#ff6600'
+        round
+        strong
+        text-color='#ffffff'
+      >
+        註冊
+      </n-button>
+      <n-button
+        text
+        text-color='#0080FF'
+      >
+        取消
+      </n-button>
+    </n-space>
+  </div>
 </template>
+
