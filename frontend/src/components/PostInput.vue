@@ -29,26 +29,56 @@ const content = ref('')
       >
         推文
       </n-button>
+      <n-modal v-model:show='showModel'>
+        <div class='PostAMessage'>
+          <div class='PostInput'>
+            <div class='avatar' />
+            <input
+              v-model='content'
+              class='post'
+            >
+          </div>
+          <div class='PostBtn'>
+            <n-button
+              color='#ff6600'
+              round
+              strong
+              text-color='#ffffff'
+            >
+              推文
+            </n-button>
+            <div class='cross' />
+          </div>
+        </div>
+      </n-modal>
     </div>
   </div>
 </template>
 
 <style scoped>
 .postInput {
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 10px solid #E6ECF0;
   padding: 16px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 8PX;
+  margin-bottom: 20px;
 }
 
 .title {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 16px;
+  padding-left: 16px;
+  padding-bottom: 16px;
+  border-bottom: 4px solid #E6ECF0;
 }
 
-.inputArea {
+.input {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-left: 16px;
 }
 
 .avatar {
@@ -59,7 +89,7 @@ const content = ref('')
   flex-shrink: 0;
 }
 
-.input {
+.inputWord {
   flex: 1;
   border: none;
   outline: none;
@@ -67,9 +97,34 @@ const content = ref('')
   color: #333;
 }
 
-.btnArea {
+.button {
   display: flex;
   justify-content: flex-end;
-  margin-top: 8px;
+  margin: 0;
+  padding-right: 20px;
 }
+
+.PostAMessage {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 24px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.post {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  min-height: 80px;
+}
+
+.PostBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
 </style>

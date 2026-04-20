@@ -35,6 +35,8 @@ defineProps({
   align-items: center;
   gap: 10px;
   margin-bottom: 8px;
+  margin-left: 16px;
+  margin-top: 8px;
 }
 
 .avatar {
@@ -67,7 +69,7 @@ defineProps({
   color: #888888;
   padding-left: 50px;
   padding-bottom: 12px;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 2px solid #eeeeee;
 }
 </style>
 

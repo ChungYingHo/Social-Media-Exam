@@ -11,7 +11,7 @@ defineProps({
 </script>
 
 <template>
-  <div>
+  <div class='postPages'>
     <PostInput />
     <PostCard
       v-for='post in posts'
@@ -23,8 +23,11 @@ defineProps({
 
 <style scoped>
 
-div{
-  flex: 1;
+.postPages{
+  width: 58%;
+  overflow-y: auto;
+  border-left: 1px solid #eeeeee;
+  border-right: 1px solid #eeeeee;
 }
 
 </style>

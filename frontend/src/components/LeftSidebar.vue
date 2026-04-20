@@ -10,16 +10,44 @@ import { HomeOutline, LogOutOutline, PersonOutline, SettingsOutline } from '@vic
 
     <div class='menu'>
       <div class='menu-item'>
-        <n-icon><HomeOutline /></n-icon>
-        <p>首頁</p>
+        <n-button
+          class='PagesBtn'
+          quaternary
+          text-color='#171725'
+        >
+          <RouterLink to='/'>
+            <n-icon class='wordIcon'>
+              <HomeOutline />
+            </n-icon>
+            首頁
+          </RouterLink>
+        </n-button>
       </div>
       <div class='menu-item'>
-        <n-icon><PersonOutline /></n-icon>
-        <p>個人資料</p>
+        <n-button
+          class='PagesBtn'
+          quaternary
+          text-color='#171725'
+        >
+          <RouterLink to='/UserPages'>
+            <n-icon class='wordIcon'>
+              <PersonOutline />
+            </n-icon>
+            個人資料
+          </RouterLink>
+        </n-button>
       </div>
       <div class='menu-item'>
-        <n-icon><SettingsOutline /></n-icon>
-        <p>設定</p>
+        <n-button
+          class='PagesBtn'
+          quaternary
+          text-color='#171725'
+        >
+          <n-icon class='wordIcon'>
+            <SettingsOutline />
+          </n-icon>
+          設定
+        </n-button>
       </div>
     </div>
 
@@ -42,26 +70,26 @@ import { HomeOutline, LogOutOutline, PersonOutline, SettingsOutline } from '@vic
 
 <style scoped>
 .sidebarPages {
-  width: 20%;
+  width: 16%;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 16px;
-  border-right: 1px solid #eeeeee;
 }
 
 .photo {
-  width: 40px;
-  height: 40px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background-color: #ff6600;
-  margin-bottom: 24px;
+  margin-bottom: 10px;
+  margin-left: 6px;
+  margin-top: 10px;
 }
 
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 8px;
 }
 
 .menu-item {
@@ -83,6 +111,19 @@ import { HomeOutline, LogOutOutline, PersonOutline, SettingsOutline } from '@vic
   gap: 8px;
   cursor: pointer;
   margin-top: auto;
+}
+
+.PagesBtn a{
+  color: inherit;
+  text-decoration: none;
+}
+
+:deep(a.router-link-active) {
+  color: #ff6600;
+}
+
+.wordIcon {
+  padding-right: 20px;
 }
 
 </style>

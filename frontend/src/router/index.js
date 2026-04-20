@@ -3,6 +3,9 @@ import Regist from '@/components/Regist.vue'
 import Index from '@/pages/Index.vue'
 import Login from '@/pages/Login.vue'
 import AdminLogin from '@/pages/AdminLogin.vue'
+import UserPages from '@/pages/UserPages.vue'
+import AdminPost from '@/pages/AdminPost.vue'
+import AdminUser from '@/pages/AdminUser.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,6 +26,23 @@ const router = createRouter({
       path: '/admin-login',
       name: 'admin-login',
       component: AdminLogin,
+    },
+
+    {
+      path: '/admin/posts',
+      name: AdminPost,
+      component: AdminPost
+    },
+
+    { path: '/admin/users',
+      name: AdminUser,
+      component: AdminUser
+    },
+
+    {
+      path: '/UserPages',
+      name: 'userPages',
+      component: UserPages,
     },
 
     {
