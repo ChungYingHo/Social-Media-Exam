@@ -1,8 +1,38 @@
 <script setup>
 import { ref } from 'vue'
 import { NButton } from 'naive-ui'
+import axios from 'axios'
 
 const content = ref('')
+const showModel = ref(false)
+
+const emit = defineEmits(['postSuccess'])
+
+const props = defineProps({
+  userPostsToken: {
+    type: String,
+    default: ''
+  }
+})
+
+async function userPost() {
+  try{
+    await axios.post('/api/tweets',
+      { description: content.value },
+      {
+        headers: {
+          Authorization: `Bearer ${props.userPostsToken}`
+        }
+      }
+    )
+    emit('postSuccess')
+    content.value = ''
+    showModel.value = false
+  }catch(error){
+    console.error(error)
+  }
+}
+
 </script>
 
 <template>
@@ -11,21 +41,22 @@ const content = ref('')
       首頁
     </p>
 
-    <div class='inputArea'>
+    <div class='input'>
       <div class='avatar' />
       <input
         v-model='content'
-        class='input'
-        placeholder='有什麼最新鮮事？'
+        class='inputWord'
+        placeholder='有什麼新鮮事？'
       >
     </div>
 
-    <div class='btnArea'>
+    <div class='button'>
       <n-button
         color='#ff6600'
         round
         strong
         text-color='#ffffff'
+        @click='showModel = true'
       >
         推文
       </n-button>
@@ -44,10 +75,10 @@ const content = ref('')
               round
               strong
               text-color='#ffffff'
+              @click='userPost'
             >
               推文
             </n-button>
-            <div class='cross' />
           </div>
         </div>
       </n-modal>
@@ -81,14 +112,6 @@ const content = ref('')
   margin-left: 16px;
 }
 
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #cccccc;
-  flex-shrink: 0;
-}
-
 .inputWord {
   flex: 1;
   border: none;
@@ -102,6 +125,14 @@ const content = ref('')
   justify-content: flex-end;
   margin: 0;
   padding-right: 20px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #cccccc;
+  flex-shrink: 0;
 }
 
 .PostAMessage {

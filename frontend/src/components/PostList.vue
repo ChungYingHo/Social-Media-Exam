@@ -6,13 +6,22 @@ defineProps({
   posts: {
     type: Array,
     default: () => []
+  },
+  token: {
+    type: String,
+    default: ''
   }
 })
+
+defineEmits(['postSuccess'])
 </script>
 
 <template>
   <div class='postPages'>
-    <PostInput />
+    <PostInput
+      :user-posts-token='token'
+      @post-success='$emit("postSuccess")'
+    />
     <PostCard
       v-for='post in posts'
       :key='post.id'

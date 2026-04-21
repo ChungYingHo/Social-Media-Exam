@@ -5,7 +5,7 @@ import PostList from '@/components/PostList.vue'
 import leftSideBar from '@/components/LeftSidebar.vue'
 import rightSidebar from '@/components/RightSidebar.vue'
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6InVzZXIiLCJpYXQiOjE3NzY2ODIwOTQsImV4cCI6MTc3NzI4Njg5NH0.Am1NoKEpv09J4m6CqQKyzCH9BAfXY2ZQZSNjO0O6WOo'
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6InVzZXIiLCJpYXQiOjE3NzY3ODQ5MzIsImV4cCI6MTc3NzM4OTczMn0.5Hw6KLTDAvdOaBwWy1IFKbkImZxLfqgVTdmj6v6isKE'
 
 const posts = ref([])
 
@@ -73,7 +73,11 @@ onMounted(() => {
 <template>
   <div class='indexPages'>
     <leftSideBar />
-    <PostList :posts='posts' />
+    <PostList
+      :posts='posts'
+      :token='token'
+      @post-success='postsApi'
+    />
     <rightSidebar :recommend-list='recommendList' />
   </div>
 </template>
