@@ -36,7 +36,7 @@ async function userPost() {
 </script>
 
 <template>
-  <div class='postInput'>
+  <div class='postPages'>
     <p class='title'>
       首頁
     </p>
@@ -62,6 +62,10 @@ async function userPost() {
       </n-button>
       <n-modal v-model:show='showModel'>
         <div class='PostAMessage'>
+          <div class='PostHeader'>
+            <span @click='showModel = false'>✕</span>
+          </div>
+          <hr class='divider'>
           <div class='PostInput'>
             <div class='avatar' />
             <input
@@ -87,7 +91,7 @@ async function userPost() {
 </template>
 
 <style scoped>
-.postInput {
+.postPages {
   border-bottom: 10px solid #E6ECF0;
   padding: 16px;
   padding-left: 0;
@@ -138,11 +142,27 @@ async function userPost() {
 .PostAMessage {
   background: #ffffff;
   border-radius: 8px;
-  padding: 24px;
-  width: 500px;
+  padding: 12px;
+  width: 634px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+}
+
+.PostHeader {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 18px;
+}
+
+.PostHeader {
+  font-size: 20px;
+  color: #ff6600;
+  cursor: pointer;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #eeeeee;
 }
 
 .post {
@@ -154,8 +174,17 @@ async function userPost() {
 }
 
 .PostBtn {
+  padding: 16px;
+  padding-bottom: 16px;
   display: flex;
   justify-content: flex-end;
+}
+
+.PostInput{
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px;
 }
 
 </style>
