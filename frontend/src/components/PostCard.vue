@@ -10,26 +10,32 @@ defineProps({
 </script>
 
 <template>
-  <div class='userHeader'>
-    <div class='avatar' />
-    <div class='user'>
-      <span>{{ post.name }}</span>
-      <span>{{ post.account }}</span>
-      <span>{{ post.time }}</span>
+  <div class='postCards'>
+    <div class='userHeader'>
+      <div class='avatar' />
+      <div class='user'>
+        <span>{{ post.name }}</span>
+        <span>{{ post.account }}</span>
+        <span>{{ post.time }}</span>
+      </div>
     </div>
-  </div>
 
-  <div class='post'>
-    <p>{{ post.content }}</p>
-  </div>
+    <div class='post'>
+      <p>{{ post.content }}</p>
+    </div>
 
-  <div class='postActions'>
-    <span>{{ post.likes }}</span>
-    <span>{{ post.comments }}</span>
+    <div class='postActions'>
+      <span>{{ post.likes }}</span>
+      <span>{{ post.comments }}</span>
+    </div>
   </div>
 </template>
 
 <style scoped>
+.postCards {
+  border-bottom: 1px solid #eeeeee
+}
+
 .userHeader {
   display: flex;
   align-items: center;
@@ -69,7 +75,7 @@ defineProps({
   color: #888888;
   padding-left: 50px;
   padding-bottom: 12px;
-  border-bottom: 2px solid #eeeeee;
 }
+
 </style>
 

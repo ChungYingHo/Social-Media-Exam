@@ -13,6 +13,10 @@ defineProps({
   title: {
     type: String,
     required: true,
+  },
+  onLogin: {
+    type: Function,
+    default: () => {}
   }
 })
 </script>
@@ -52,6 +56,7 @@ defineProps({
         strong
         style='width: 300px;'
         text-color='#ffffff'
+        @click='onLogin(account, password)'
       >
         登入
       </n-button>

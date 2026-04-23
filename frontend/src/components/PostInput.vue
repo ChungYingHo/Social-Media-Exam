@@ -36,7 +36,7 @@ async function userPost() {
 </script>
 
 <template>
-  <div class='postPages'>
+  <div class='posts'>
     <p class='title'>
       首頁
     </p>
@@ -91,7 +91,7 @@ async function userPost() {
 </template>
 
 <style scoped>
-.postPages {
+.posts {
   border-bottom: 10px solid #E6ECF0;
   padding: 16px;
   padding-left: 0;

@@ -1,8 +1,25 @@
 <script setup>
 import LoginForm from '@/components/LoginForm.vue'
 import { NFlex, NButton, NSpace } from 'naive-ui'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
 
 const name = '前台'
+const router = useRouter()
+
+async function userLogin(account, password) {
+  try{
+    const { data } = await axios.post('/api/users/signin', {
+      account,
+      password
+    })
+    localStorage.setItem('token', data.token)
+    localStorage.setItem('user', JSON.stringify(data.user))
+    router.push('/')
+  }catch(error){
+    console.error(error)
+  }
+}
 
 </script>
 
@@ -15,9 +32,9 @@ const name = '前台'
       >
         <LoginForm
           msg='登入頁面'
+          :on-login='userLogin'
           :title='name'
         />
-
         <div class='button'>
           <n-space>
             <n-button
