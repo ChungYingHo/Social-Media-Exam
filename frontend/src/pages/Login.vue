@@ -41,6 +41,7 @@ async function userLogin(account, password) {
               class='newUserLogin'
               text
               text-color='#0080FF'
+              @click='router.push("/regist")'
             >
               註冊
             </n-button>

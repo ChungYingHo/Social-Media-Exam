@@ -1,7 +1,9 @@
 <script setup>
+import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { ChatbubbleOutline, HeartOutline } from '@vicons/ionicons5'
+import { ChatbubbleOutline, HeartOutline, Heart } from '@vicons/ionicons5'
 import { NIcon } from 'naive-ui'
+import axios from 'axios'
 
 const props = defineProps({
   post: {
@@ -13,12 +15,47 @@ const props = defineProps({
 const router = useRouter()
 const emit = defineEmits(['openReply'])
 
+const isLiked = ref(props.post.isLiked ?? false)
+const likesCount = ref(props.post.likes ?? 0)
+
 function goToTweet() {
   router.push(`/tweet/${props.post.id}`)
 }
 
 function openReply() {
   emit('openReply', props.post)
+}
+
+watch(() => props.post.isLiked, (newVal) => {
+  isLiked.value = newVal ?? false
+})
+
+watch(() => props.post.likes, (newVal) => {
+  likesCount.value = newVal ?? 0
+})
+
+async function toggleLike() {
+  try {
+    if (isLiked.value) {
+      await axios.post(`/api/tweets/${props.post.id}/unlike`, {}, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      isLiked.value = false
+      likesCount.value--
+    } else {
+      await axios.post(`/api/tweets/${props.post.id}/like`, {}, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      isLiked.value = true
+      likesCount.value++
+    }
+  } catch(error) {
+    console.error(error)
+  }
 }
 
 </script>
@@ -33,6 +70,12 @@ function openReply() {
         <span>{{ post.time }}</span>
       </div>
     </div>
+    <p
+      v-if='post.replyTo'
+      class='replyTo'
+    >
+      回覆 <span class='mention'>@{{ post.replyTo }}</span>
+    </p>
 
     <div
       class='post'
@@ -45,9 +88,13 @@ function openReply() {
       <span @click='openReply'>
         <n-icon><ChatbubbleOutline /></n-icon>
         {{ post.comments }}</span>
-      <span>
-        <n-icon><HeartOutline /></n-icon>
-        {{ post.likes }}</span>
+      <span @click.stop='toggleLike'>
+        <n-icon :color="isLiked ? '#e0245e' : ''">
+          <HeartOutline v-if='!isLiked' />
+          <Heart v-else />
+        </n-icon>
+        {{ likesCount }}
+      </span>
     </div>
   </div>
 </template>
@@ -96,6 +143,17 @@ function openReply() {
   color: #888888;
   padding-left: 50px;
   padding-bottom: 12px;
+}
+
+.replyTo {
+  font-size: 13px;
+  color: #888888;
+  padding-left: 50px;
+  margin-bottom: 4px;
+}
+
+.mention {
+  color: #ff6600;
 }
 
 </style>

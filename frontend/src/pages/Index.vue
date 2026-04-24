@@ -25,7 +25,8 @@ async function postsApi() {
       content: post.description,
       likes: post.likesCount,
       comments: post.repliesCount,
-      time: post.createdAt
+      time: post.createdAt,
+      isLiked: post.isLiked
     }))
   }catch(error){
     console.error(error)
