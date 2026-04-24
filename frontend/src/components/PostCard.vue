@@ -1,11 +1,25 @@
 <script setup>
+import { useRouter } from 'vue-router'
+import { ChatbubbleOutline, HeartOutline } from '@vicons/ionicons5'
+import { NIcon } from 'naive-ui'
 
-defineProps({
+const props = defineProps({
   post: {
     type: Object,
     required: true,
   }
 })
+
+const router = useRouter()
+const emit = defineEmits(['openReply'])
+
+function goToTweet() {
+  router.push(`/tweet/${props.post.id}`)
+}
+
+function openReply() {
+  emit('openReply', props.post)
+}
 
 </script>
 
@@ -20,13 +34,20 @@ defineProps({
       </div>
     </div>
 
-    <div class='post'>
+    <div
+      class='post'
+      @click='goToTweet'
+    >
       <p>{{ post.content }}</p>
     </div>
 
     <div class='postActions'>
-      <span>{{ post.likes }}</span>
-      <span>{{ post.comments }}</span>
+      <span @click='openReply'>
+        <n-icon><ChatbubbleOutline /></n-icon>
+        {{ post.comments }}</span>
+      <span>
+        <n-icon><HeartOutline /></n-icon>
+        {{ post.likes }}</span>
     </div>
   </div>
 </template>

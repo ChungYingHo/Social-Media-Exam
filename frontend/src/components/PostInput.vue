@@ -1,10 +1,11 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { NButton } from 'naive-ui'
 import axios from 'axios'
 
 const content = ref('')
 const showModel = ref(false)
+const submitted = ref(false)
 
 const emit = defineEmits(['postSuccess'])
 
@@ -16,6 +17,8 @@ const props = defineProps({
 })
 
 async function userPost() {
+  submitted.value = true
+  if(wordEmpty.value || wordOverLimit.value) return
   try{
     await axios.post('/api/tweets',
       { description: content.value },
@@ -28,10 +31,15 @@ async function userPost() {
     emit('postSuccess')
     content.value = ''
     showModel.value = false
+    submitted.value = false
   }catch(error){
     console.error(error)
   }
 }
+
+const wordCount = computed(() => content.value.length)
+const wordOverLimit = computed(() => wordCount.value > 140)
+const wordEmpty = computed(() => content.value.trim() === '')
 
 </script>
 
@@ -68,12 +76,20 @@ async function userPost() {
           <hr class='divider'>
           <div class='PostInput'>
             <div class='avatar' />
-            <input
+            <textarea
               v-model='content'
               class='post'
-            >
+            />
           </div>
           <div class='PostBtn'>
+            <span
+              v-if='submitted && wordOverLimit'
+              class='errorMsg'
+            >字數不可超過 140 字</span>
+            <span
+              v-else-if='submitted && wordEmpty'
+              class='errorMsg'
+            >內容不可空白</span>
             <n-button
               color='#ff6600'
               round
@@ -185,6 +201,13 @@ async function userPost() {
   align-items: flex-start;
   gap: 12px;
   padding: 20px;
+}
+
+.errorMsg {
+  font-size: 13px;
+  color: #ff6600;
+  align-self: center;
+  margin-right: 12px;
 }
 
 </style>

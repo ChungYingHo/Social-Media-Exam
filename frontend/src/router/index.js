@@ -6,6 +6,7 @@ import AdminLogin from '@/pages/AdminLogin.vue'
 import UserPages from '@/pages/UserPages.vue'
 import AdminPost from '@/pages/AdminPost.vue'
 import AdminUser from '@/pages/AdminUser.vue'
+import TweetPages from '@/pages/TweetPages.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,12 +31,18 @@ const router = createRouter({
 
     {
       path: '/admin/posts',
-      name: AdminPost,
-      component: AdminPost
+      name: 'AdminPost',
+      component: AdminPost,
+    },
+
+    {
+      path: '/tweet/:id',
+      name: 'TweetPages',
+      component: TweetPages,
     },
 
     { path: '/admin/users',
-      name: AdminUser,
+      name: 'AdminUser',
       component: AdminUser
     },
 

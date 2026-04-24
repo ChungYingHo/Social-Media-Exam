@@ -1,6 +1,15 @@
 <script setup>
 import { NButton } from 'naive-ui'
 import { HomeOutline, LogOutOutline, PersonOutline, SettingsOutline } from '@vicons/ionicons5'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+function logout(){
+  localStorage.removeItem('token')
+  localStorage.removeItem('user')
+  router.push('/login')
+}
 
 </script>
 
@@ -61,7 +70,10 @@ import { HomeOutline, LogOutOutline, PersonOutline, SettingsOutline } from '@vic
       推文
     </n-button>
 
-    <div class='loginOut'>
+    <div
+      class='loginOut'
+      @click='logout'
+    >
       <n-icon><LogOutOutline /></n-icon>
       <p>登出</p>
     </div>
