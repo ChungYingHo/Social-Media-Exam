@@ -128,10 +128,7 @@ const wordEmpty = computed(() => content.value.trim() === '')
 <style scoped>
 .posts {
   border-bottom: 10px solid #E6ECF0;
-  padding: 16px;
-  padding-left: 0;
-  padding-right: 0;
-  padding-bottom: 8PX;
+  padding: 16px 0 8px 0;
   margin-bottom: 20px;
 }
 
@@ -188,9 +185,6 @@ const wordEmpty = computed(() => content.value.trim() === '')
   display: flex;
   justify-content: flex-start;
   padding-left: 18px;
-}
-
-.PostHeader {
   font-size: 20px;
   color: #ff6600;
   cursor: pointer;
