@@ -53,10 +53,9 @@ async function adminLogin(account, password) {
 .allPages {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   height: 100vh;
   background-color: #ffffff;
-  padding-bottom: 360px;
 }
 
 .loginCard {
