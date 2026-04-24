@@ -3,6 +3,7 @@ import LoginForm from '@/components/LoginForm.vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 import logo from '@/assets/icon.png'
+import { NButton } from 'naive-ui'
 
 const name = '後台登入'
 const router = useRouter()
@@ -35,6 +36,15 @@ async function adminLogin(account, password) {
         :on-login='adminLogin'
         :title='name'
       />
+      <div class='button'>
+        <n-button
+          text
+          text-color='#0080FF'
+          @click='router.push("/login")'
+        >
+          前台登入
+        </n-button>
+      </div>
     </div>
   </div>
 </template>
@@ -46,6 +56,7 @@ async function adminLogin(account, password) {
   align-items: center;
   height: 100vh;
   background-color: #ffffff;
+  padding-bottom: 360px;
 }
 
 .loginCard {
@@ -59,5 +70,11 @@ async function adminLogin(account, password) {
 .logo {
   width: 50px;
   height: 50px;
+}
+
+.button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

@@ -65,6 +65,7 @@ async function userLogin(account, password) {
   align-items: center;
   height: 100vh;
   background-color: #ffffff;
+  padding-bottom: 360px;
 }
 
 .loginCard {
@@ -81,7 +82,8 @@ async function userLogin(account, password) {
 }
 
 .button {
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 </style>
