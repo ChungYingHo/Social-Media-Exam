@@ -8,6 +8,7 @@ import AdminPost from '@/pages/AdminPost.vue'
 import AdminUser from '@/pages/AdminUser.vue'
 import TweetPages from '@/pages/TweetPages.vue'
 import Setting from '@/pages/Setting.vue'
+import FollowPages from '@/pages/FollowPages.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -51,6 +52,12 @@ const router = createRouter({
       path: '/UserPages',
       name: 'userPages',
       component: UserPages,
+    },
+
+    {
+      path: '/user/follower',
+      name: 'FollowPages',
+      component: FollowPages,
     },
 
     {

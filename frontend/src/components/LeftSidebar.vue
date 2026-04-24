@@ -88,6 +88,8 @@ function logout(){
   height: 100vh;
   display: flex;
   flex-direction: column;
+  position: sticky;
+  top: 0;
 }
 
 .photo {
