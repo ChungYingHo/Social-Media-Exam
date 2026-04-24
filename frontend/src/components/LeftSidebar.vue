@@ -52,10 +52,12 @@ function logout(){
           quaternary
           text-color='#171725'
         >
-          <n-icon class='wordIcon'>
-            <SettingsOutline />
-          </n-icon>
-          設定
+          <RouterLink to='/setting'>
+            <n-icon class='wordIcon'>
+              <SettingsOutline />
+            </n-icon>
+            設定
+          </RouterLink>
         </n-button>
       </div>
     </div>

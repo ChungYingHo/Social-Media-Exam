@@ -79,6 +79,7 @@ const wordEmpty = computed(() => content.value.trim() === '')
             <textarea
               v-model='content'
               class='post'
+              placeholder='有什麼新鮮事？'
             />
           </div>
           <div class='PostBtn'>
