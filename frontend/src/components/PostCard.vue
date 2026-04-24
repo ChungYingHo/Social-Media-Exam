@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { ChatbubbleOutline, HeartOutline, Heart } from '@vicons/ionicons5'
 import { NIcon } from 'naive-ui'
 import axios from 'axios'
+import { postsTime } from '@/utils/Time.js'
 
 const props = defineProps({
   post: {
@@ -63,11 +64,19 @@ async function toggleLike() {
 <template>
   <div class='postCards'>
     <div class='userHeader'>
-      <div class='avatar' />
+      <img
+        v-if='post.avatar'
+        class='avatar'
+        :src='post.avatar'
+      >
+      <div
+        v-else
+        class='avatar'
+      />
       <div class='user'>
         <span>{{ post.name }}</span>
         <span>{{ post.account }}</span>
-        <span>{{ post.time }}</span>
+        <span>{{ postsTime(post.time) }}</span>
       </div>
     </div>
     <p
@@ -119,6 +128,7 @@ async function toggleLike() {
   border-radius: 50%;
   background-color: #cccccc;
   flex-shrink: 0;
+  object-fit: cover;
 }
 
 .user {

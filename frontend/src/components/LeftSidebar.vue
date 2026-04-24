@@ -2,6 +2,7 @@
 import { NButton } from 'naive-ui'
 import { HomeOutline, LogOutOutline, PersonOutline, SettingsOutline } from '@vicons/ionicons5'
 import { useRouter } from 'vue-router'
+import logo from '@/assets/icon.png'
 
 const router = useRouter()
 
@@ -15,7 +16,10 @@ function logout(){
 
 <template>
   <div class='sidebarPages'>
-    <div class='photo' />
+    <img
+      class='photo'
+      :src='logo'
+    >
 
     <div class='menu'>
       <div class='menu-item'>
@@ -96,10 +100,11 @@ function logout(){
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background-color: #ff6600;
+  background-color: transparent;
   margin-bottom: 10px;
   margin-left: 6px;
   margin-top: 10px;
+  object-fit: cover;
 }
 
 .menu {

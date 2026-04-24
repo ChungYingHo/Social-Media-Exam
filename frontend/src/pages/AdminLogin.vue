@@ -2,8 +2,9 @@
 import LoginForm from '@/components/LoginForm.vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
+import logo from '@/assets/icon.png'
 
-const name = '後台'
+const name = '後台登入'
 const router = useRouter()
 
 async function adminLogin(account, password) {
@@ -24,25 +25,39 @@ async function adminLogin(account, password) {
 
 <template>
   <div class='allPages'>
-    <LoginForm
-      :on-login='adminLogin'
-      :title='name'
-    />
+    <div class='loginCard'>
+      <img
+        class='logo'
+        :src='logo'
+      >
+      <LoginForm
+        msg='登入頁面'
+        :on-login='adminLogin'
+        :title='name'
+      />
+    </div>
   </div>
 </template>
 
 <style scoped>
-
-.allPages{
+.allPages {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  padding-bottom: 250px;
+  background-color: #ffffff;
 }
 
+.loginCard {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+}
 </style>

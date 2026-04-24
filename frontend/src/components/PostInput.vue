@@ -6,6 +6,8 @@ import axios from 'axios'
 const content = ref('')
 const showModel = ref(false)
 const submitted = ref(false)
+const user = JSON.parse(localStorage.getItem('user'))
+const avatar = user.avatar
 
 const emit = defineEmits(['postSuccess'])
 
@@ -50,7 +52,15 @@ const wordEmpty = computed(() => content.value.trim() === '')
     </p>
 
     <div class='input'>
-      <div class='avatar' />
+      <img
+        v-if='avatar'
+        class='avatar'
+        :src='avatar'
+      >
+      <div
+        v-else
+        class='avatar'
+      />
       <input
         v-model='content'
         class='inputWord'
@@ -75,7 +85,15 @@ const wordEmpty = computed(() => content.value.trim() === '')
           </div>
           <hr class='divider'>
           <div class='PostInput'>
-            <div class='avatar' />
+            <img
+              v-if='avatar'
+              class='avatar'
+              :src='avatar'
+            >
+            <div
+              v-else
+              class='avatar'
+            />
             <textarea
               v-model='content'
               class='post'
@@ -154,6 +172,7 @@ const wordEmpty = computed(() => content.value.trim() === '')
   border-radius: 50%;
   background-color: #cccccc;
   flex-shrink: 0;
+  object-fit: cover;
 }
 
 .PostAMessage {
