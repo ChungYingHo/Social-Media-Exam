@@ -1,12 +1,14 @@
 <script setup>
 import LoginForm from '@/components/LoginForm.vue'
-import { NButton, NSpace } from 'naive-ui'
+import { NButton, NSpace, useMessage } from 'naive-ui'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 import logo from '@/assets/icon.png'
 
 const name = '登入Alphitter'
 const router = useRouter()
+
+const message = useMessage()
 
 async function userLogin(account, password) {
   try {
@@ -16,8 +18,10 @@ async function userLogin(account, password) {
     })
     localStorage.setItem('token', data.token)
     localStorage.setItem('user', JSON.stringify(data.user))
+    message.success('登入成功')
     router.push('/')
   } catch(error) {
+    message.error('登入失敗')
     console.error(error)
   }
 }
@@ -85,4 +89,5 @@ async function userLogin(account, password) {
   display: flex;
   justify-content: flex-end;
 }
+
 </style>

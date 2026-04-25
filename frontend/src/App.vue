@@ -1,12 +1,25 @@
 <script setup>
 import { RouterView } from 'vue-router'
+import { NMessageProvider, NDialogProvider } from 'naive-ui'
 
 </script>
 
 <template>
-  <RouterView />
+  <n-message-provider>
+    <n-dialog-provider>
+      <RouterView />
+    </n-dialog-provider>
+  </n-message-provider>
 </template>
 
-<style scoped>
+<style>
+
+#app {
+  user-select: none;
+}
+
+input, textarea {
+  user-select: text;
+}
 
 </style>

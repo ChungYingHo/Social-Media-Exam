@@ -14,17 +14,12 @@ const props = defineProps({
 })
 
 const router = useRouter()
-const emit = defineEmits(['openReply'])
 
 const isLiked = ref(props.post.isLiked ?? false)
 const likesCount = ref(props.post.likes ?? 0)
 
 function goToTweet() {
   router.push(`/tweet/${props.post.id}`)
-}
-
-function openReply() {
-  emit('openReply', props.post)
 }
 
 watch(() => props.post.isLiked, (newVal) => {
@@ -94,7 +89,7 @@ async function toggleLike() {
     </div>
 
     <div class='postActions'>
-      <span @click='openReply'>
+      <span @click.stop='goToTweet'>
         <n-icon><ChatbubbleOutline /></n-icon>
         {{ post.comments }}</span>
       <span @click.stop='toggleLike'>

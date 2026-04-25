@@ -65,6 +65,7 @@ const wordEmpty = computed(() => content.value.trim() === '')
         v-model='content'
         class='inputWord'
         placeholder='有什麼新鮮事？'
+        @click='showModel = true'
       >
     </div>
 
@@ -179,6 +180,8 @@ const wordEmpty = computed(() => content.value.trim() === '')
   width: 634px;
   display: flex;
   flex-direction: column;
+  margin-left: 390px;
+  margin-bottom: 530px;
 }
 
 .PostHeader {
@@ -222,6 +225,10 @@ const wordEmpty = computed(() => content.value.trim() === '')
   color: #ff6600;
   align-self: center;
   margin-right: 12px;
+}
+
+textarea {
+  resize: none;
 }
 
 </style>
