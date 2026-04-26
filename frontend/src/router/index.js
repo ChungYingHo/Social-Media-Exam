@@ -9,6 +9,7 @@ import AdminUser from '@/pages/AdminUser.vue'
 import TweetPages from '@/pages/TweetPages.vue'
 import Setting from '@/pages/Setting.vue'
 import FollowPages from '@/pages/FollowPages.vue'
+import NotFoundPages from '@/pages/NotFoundPages.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,7 +19,7 @@ const router = createRouter({
       name: 'Index',
       component: Index,
     },
-    
+
     {
       path: '/login',
       name: 'login',
@@ -73,6 +74,12 @@ const router = createRouter({
     },
 
     {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: NotFoundPages,
+    },
+
+    {
       path: '/about',
       name: 'about',
       component: () => import('@/views/AboutView.vue'),
@@ -83,6 +90,18 @@ const router = createRouter({
       component: () => import('@/views/DemoView.vue'),
     },
   ],
+})
+
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token')
+  const publicPages = ['/login', '/regist', '/admin-login']
+  const isPublicPage = publicPages.includes(to.path)
+
+  if (!token && !isPublicPage) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router
