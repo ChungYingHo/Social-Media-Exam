@@ -13,6 +13,8 @@ const props = defineProps({
   }
 })
 
+const emit = defineEmits(['unliked'])
+
 const router = useRouter()
 
 const isLiked = ref(props.post.isLiked ?? false)
@@ -39,7 +41,8 @@ async function toggleLike() {
         }
       })
       isLiked.value = false
-      likesCount.value--
+      likesCount.value --
+      emit('unliked')
     } else {
       await axios.post(`/api/tweets/${props.post.id}/like`, {}, {
         headers: {
@@ -47,7 +50,7 @@ async function toggleLike() {
         }
       })
       isLiked.value = true
-      likesCount.value++
+      likesCount.value ++
     }
   } catch(error) {
     console.error(error)
