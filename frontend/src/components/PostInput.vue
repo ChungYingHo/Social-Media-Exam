@@ -5,7 +5,6 @@ import axios from 'axios'
 
 const content = ref('')
 const showModel = ref(false)
-const submitted = ref(false)
 const user = JSON.parse(localStorage.getItem('user'))
 const avatar = user.avatar
 
@@ -19,8 +18,7 @@ const props = defineProps({
 })
 
 async function userPost() {
-  submitted.value = true
-  if(wordEmpty.value || wordOverLimit.value) return
+  if(wordEmpty.value) return
   try{
     await axios.post('/api/tweets',
       { description: content.value },
@@ -33,7 +31,6 @@ async function userPost() {
     emit('postSuccess')
     content.value = ''
     showModel.value = false
-    submitted.value = false
   }catch(error){
     console.error(error)
   }
@@ -102,12 +99,13 @@ const wordEmpty = computed(() => content.value.trim() === '')
             />
           </div>
           <div class='PostBtn'>
+            <span :class="wordOverLimit ? 'errorMsg' : 'wordCount'">{{ wordCount }} / 140</span>
             <span
-              v-if='submitted && wordOverLimit'
+              v-if='wordOverLimit'
               class='errorMsg'
             >字數不可超過 140 字</span>
             <span
-              v-else-if='submitted && wordEmpty'
+              v-if='wordEmpty'
               class='errorMsg'
             >內容不可空白</span>
             <n-button
@@ -223,6 +221,13 @@ const wordEmpty = computed(() => content.value.trim() === '')
 .errorMsg {
   font-size: 13px;
   color: #ff6600;
+  align-self: center;
+  margin-right: 12px;
+}
+
+.wordCount {
+  font-size: 13px;
+  color: #888888;
   align-self: center;
   margin-right: 12px;
 }
