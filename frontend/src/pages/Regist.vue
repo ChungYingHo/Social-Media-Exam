@@ -1,0 +1,160 @@
+<script setup>
+import { ref } from 'vue'
+import { NInput, NButton, useMessage } from 'naive-ui'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
+import logo from '@/assets/icon.png'
+
+const router = useRouter()
+
+const account = ref('')
+const userName = ref('')
+const userEmail = ref('')
+const password = ref('')
+const passwordConfirm = ref('')
+
+const message = useMessage()
+
+async function register() {
+  try {
+    await axios.post('/api/users', {
+      account: account.value,
+      name: userName.value,
+      email: userEmail.value,
+      password: password.value,
+      checkPassword: passwordConfirm.value
+    })
+    message.success('註冊成功')
+    router.push('/login')
+  } catch(error) {
+    message.error('註冊失敗')
+    console.error(error)
+  }
+}
+
+function cancel() {
+  router.push('/login')
+}
+</script>
+
+<template>
+  <div class='allRegist'>
+    <div class='registCard'>
+      <img
+        class='logo'
+        :src='logo'
+      >
+      <p class='title'>
+        建立你的帳號
+      </p>
+
+      <div class='inputGroup'>
+        <label class='inputLabel'>帳號</label>
+        <n-input
+          v-model:value='account'
+          placeholder='請輸入帳號'
+          type='text'
+        />
+      </div>
+
+      <div class='inputGroup'>
+        <label class='inputLabel'>名稱</label>
+        <n-input
+          v-model:value='userName'
+          placeholder='請輸入使用者名稱'
+          type='text'
+        />
+      </div>
+
+      <div class='inputGroup'>
+        <label class='inputLabel'>Email</label>
+        <n-input
+          v-model:value='userEmail'
+          placeholder='請輸入Email'
+          type='text'
+        />
+      </div>
+
+      <div class='inputGroup'>
+        <label class='inputLabel'>密碼</label>
+        <n-input
+          v-model:value='password'
+          placeholder='請設定密碼'
+          type='password'
+        />
+      </div>
+
+      <div class='inputGroup'>
+        <label class='inputLabel'>密碼確認</label>
+        <n-input
+          v-model:value='passwordConfirm'
+          placeholder='請再次輸入密碼'
+          type='password'
+        />
+      </div>
+
+      <n-button
+        color='#ff6600'
+        round
+        strong
+        style='width: 100%;'
+        text-color='#ffffff'
+        @click='register'
+      >
+        註冊
+      </n-button>
+
+      <n-button
+        style='width: 100%; text-align: center;'
+        text
+        text-color='#0080FF'
+        @click='cancel'
+      >
+        取消
+      </n-button>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.allRegist {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+.registCard {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 40px 0;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.inputLabel {
+  font-size: 13px;
+  color: #888888;
+}
+
+</style>
