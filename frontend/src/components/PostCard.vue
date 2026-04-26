@@ -142,6 +142,7 @@ async function toggleLike() {
   font-size: 14px;
   line-height: 1.5;
   padding-left: 50px;
+  word-break: break-all;
 }
 
 .postActions {

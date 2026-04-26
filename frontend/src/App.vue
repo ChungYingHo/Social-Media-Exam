@@ -5,7 +5,7 @@ import { NMessageProvider, NDialogProvider } from 'naive-ui'
 </script>
 
 <template>
-  <n-message-provider>
+  <n-message-provider placement='bottom-right'>
     <n-dialog-provider>
       <RouterView />
     </n-dialog-provider>
