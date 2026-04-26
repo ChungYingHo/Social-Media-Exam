@@ -148,7 +148,8 @@ export function userRoutes({ db, sqlite }: DbContext) {
       SELECT
         r.id as replyId, r.comment, r.createdAt as replyCreatedAt,
         t.id as tweetId, t.description,
-        tu.id as "tweetUser.id", tu.name as "tweetUser.name", tu.account as "tweetUser.account"
+        tu.id as "tweetUser.id", tu.name as "tweetUser.name", tu.account as "tweetUser.account",
+        tu.avatar as "tweetUser.avatar"
       FROM replies r
       JOIN tweets t ON r.TweetId = t.id
       JOIN users tu ON t.UserId = tu.id
@@ -167,6 +168,7 @@ export function userRoutes({ db, sqlite }: DbContext) {
           id: row['tweetUser.id'],
           name: row['tweetUser.name'],
           account: row['tweetUser.account'],
+          avatar: row['tweetUser.avatar'],
         },
       },
     })))
