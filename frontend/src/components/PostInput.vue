@@ -6,7 +6,9 @@ import axios from 'axios'
 const content = ref('')
 const showModel = ref(false)
 const user = JSON.parse(localStorage.getItem('user'))
-const avatar = user.avatar
+const avatar = user.avatar?.startsWith('/uploads')
+  ? `http://localhost:3000${user.avatar}`
+  : user.avatar
 
 const emit = defineEmits(['postSuccess'])
 

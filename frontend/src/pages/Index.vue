@@ -55,7 +55,9 @@ async function RightSideBarAuthApi() {
       id: responses.id,
       name: responses.name,
       account: '@' + responses.account,
-      avatar: responses.avatar,
+      avatar: responses.avatar?.startsWith('/uploads')
+        ? `http://localhost:3000${responses.avatar}`
+        : responses.avatar,
       introduction: responses.introduction,
       followersCount: responses.followersCount,
       isFollowed: responses.isFollowed
