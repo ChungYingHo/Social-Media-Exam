@@ -91,7 +91,9 @@ async function userReplies() {
       likes: 0,
       comments: 0,
       replyTo: post.Tweet.user.account,
-      avatar: post.Tweet.user.avatar
+      avatar: post.Tweet.user.avatar?.startsWith('/uploads')  // ← 加這個判斷
+        ? `http://localhost:3000${post.Tweet.user.avatar}`
+        : post.Tweet.user.avatar
     }))
   } catch(error) {
     console.error(error)
@@ -397,15 +399,22 @@ defineExpose({
 
 .postTitle .n-icon {
   font-size: 24px;
+  color: #171725;
 }
 
 .userPostName {
   font-size: 18px;
   font-weight: bold;
+  color: #171725;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }
 
 .userPostCount {
   font-size: 14px;
+  color: #171725;
 }
 
 .Cover {
@@ -437,12 +446,21 @@ defineExpose({
   padding: 8px 16px 0 16px;
   font-size: 18px;
   font-weight: bold;
+  color: #171725;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .UserIntroduce {
   padding: 4px 16px;
   font-size: 14px;
-  color: #555555;
+  color: #171725;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .btn {
@@ -456,6 +474,7 @@ defineExpose({
   gap: 16px;
   padding: 8px 16px;
   font-size: 14px;
+  color: #171725;
 }
 
 .tab {
@@ -470,18 +489,12 @@ defineExpose({
   cursor: pointer;
   font-size: 16px;
   white-space: nowrap;
+  color: #171725;
 }
 
-.activeTab {
+.tab p.activeTab {
   color: #ff6600;
   border-bottom: 2px solid #ff6600;
-}
-
-.editModal {
-  background: #ffffff;
-  border-radius: 8px;
-  width: 634px;
-  overflow: hidden;
 }
 
 .editHeader {
@@ -591,5 +604,41 @@ defineExpose({
   color: #888888;
   text-align: right;
   margin-top: 4px;
+}
+</style>
+
+<style>
+.editModal {
+  background: #ffffff;
+  border-radius: 8px;
+  width: 634px;
+  overflow: hidden;
+  position: fixed;
+  top: 76px;
+  left: 265px;
+}
+
+@media (min-width: 1366px) {
+  .editModal {
+    left: 308px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .editModal {
+    left: 345px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .editModal {
+    left: 390px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .editModal {
+    left: 585px;
+  }
 }
 </style>

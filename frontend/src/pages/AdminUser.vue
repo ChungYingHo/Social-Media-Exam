@@ -107,6 +107,7 @@ onMounted(() => {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 16px;
+  color: #171725;
 }
 
 .userList{
@@ -147,6 +148,7 @@ onMounted(() => {
 .name {
   font-weight: bold;
   font-size: 14px;
+  color: #171725;
 }
 
 .account {

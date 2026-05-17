@@ -41,7 +41,6 @@ async function userPost() {
 const wordCount = computed(() => content.value.length)
 const wordOverLimit = computed(() => wordCount.value > 140)
 const wordEmpty = computed(() => content.value.trim() === '')
-
 </script>
 
 <template>
@@ -78,7 +77,11 @@ const wordEmpty = computed(() => content.value.trim() === '')
       >
         推文
       </n-button>
-      <n-modal v-model:show='showModel'>
+      <n-modal
+        v-model:show='showModel'
+        :auto-focus='false'
+        transform-origin='center'
+      >
         <div class='PostAMessage'>
           <div class='PostHeader'>
             <span @click='showModel = false'>✕</span>
@@ -140,6 +143,7 @@ const wordEmpty = computed(() => content.value.trim() === '')
   padding-left: 16px;
   padding-bottom: 16px;
   border-bottom: 4px solid #E6ECF0;
+  color: #000000;
 }
 
 .input {
@@ -171,17 +175,6 @@ const wordEmpty = computed(() => content.value.trim() === '')
   background-color: #cccccc;
   flex-shrink: 0;
   object-fit: cover;
-}
-
-.PostAMessage {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 12px;
-  width: 634px;
-  display: flex;
-  flex-direction: column;
-  margin-left: 390px;
-  margin-bottom: 530px;
 }
 
 .PostHeader {
@@ -218,6 +211,7 @@ const wordEmpty = computed(() => content.value.trim() === '')
   align-items: flex-start;
   gap: 12px;
   padding: 20px;
+  padding-left: 10px;
 }
 
 .errorMsg {
@@ -236,6 +230,52 @@ const wordEmpty = computed(() => content.value.trim() === '')
 
 textarea {
   resize: none;
+}
+</style>
+
+<style>
+.PostAMessage {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 12px;
+  width: 634px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 60px;
+  left: 265px;
+}
+
+@media (max-width: 768px) {
+  .PostAMessage {
+    width: 90vw;
+    left: 5vw;
+    top: 60px;
+  }
+}
+
+@media (min-width: 1366px) {
+  .PostAMessage {
+    left: 308px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .PostAMessage {
+    left: 345px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .PostAMessage {
+    left: 390px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .PostAMessage {
+    left: 580px;
+  }
 }
 
 </style>

@@ -1,24 +1,27 @@
+<!-- eslint-disable no-unused-vars -->
 <script setup>
 import LoginForm from '@/components/LoginForm.vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 import logo from '@/assets/icon.png'
-import { NButton } from 'naive-ui'
+import { NButton, useMessage } from 'naive-ui'
+const message = useMessage()
 
 const name = '後台登入'
 const router = useRouter()
 
 async function adminLogin(account, password) {
-  try{
+  try {
     const { data } = await axios.post('/api/admin/signin', {
       account,
       password
     })
-    localStorage.setItem('adminToken', data.token)
-    localStorage.setItem('adminUser', JSON.stringify(data.user))
+    localStorage.setItem('token', data.token)
+    localStorage.setItem('role', 'admin')
+    localStorage.setItem('user', JSON.stringify(data.user))
     router.push('/admin/posts')
-  }catch(error){
-    console.error(error)
+  } catch(error) {
+    message.error('帳號或密碼錯誤')
   }
 }
 
@@ -64,6 +67,7 @@ async function adminLogin(account, password) {
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  margin-top: 40px;
 }
 
 .logo {

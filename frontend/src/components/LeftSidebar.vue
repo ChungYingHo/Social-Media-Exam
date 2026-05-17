@@ -11,7 +11,6 @@ function logout(){
   localStorage.removeItem('user')
   router.push('/login')
 }
-
 </script>
 
 <template>
@@ -22,48 +21,35 @@ function logout(){
     >
 
     <div class='menu'>
-      <div class='menu-item'>
-        <n-button
-          class='PagesBtn'
-          quaternary
-          text-color='#171725'
-        >
-          <RouterLink to='/'>
-            <n-icon class='wordIcon'>
-              <HomeOutline />
-            </n-icon>
-            首頁
-          </RouterLink>
-        </n-button>
-      </div>
-      <div class='menu-item'>
-        <n-button
-          class='PagesBtn'
-          quaternary
-          text-color='#171725'
-        >
-          <RouterLink to='/UserPages'>
-            <n-icon class='wordIcon'>
-              <PersonOutline />
-            </n-icon>
-            個人資料
-          </RouterLink>
-        </n-button>
-      </div>
-      <div class='menu-item'>
-        <n-button
-          class='PagesBtn'
-          quaternary
-          text-color='#171725'
-        >
-          <RouterLink to='/setting'>
-            <n-icon class='wordIcon'>
-              <SettingsOutline />
-            </n-icon>
-            設定
-          </RouterLink>
-        </n-button>
-      </div>
+      <RouterLink
+        class='menu-item'
+        to='/'
+      >
+        <n-icon class='wordIcon'>
+          <HomeOutline />
+        </n-icon>
+        首頁
+      </RouterLink>
+
+      <RouterLink
+        class='menu-item'
+        to='/UserPages'
+      >
+        <n-icon class='wordIcon'>
+          <PersonOutline />
+        </n-icon>
+        個人資料
+      </RouterLink>
+
+      <RouterLink
+        class='menu-item'
+        to='/setting'
+      >
+        <n-icon class='wordIcon'>
+          <SettingsOutline />
+        </n-icon>
+        設定
+      </RouterLink>
     </div>
 
     <n-button
@@ -119,6 +105,20 @@ function logout(){
   gap: 8px;
   cursor: pointer;
   font-size: 16px;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #171725;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.menu-item:hover {
+  background-color: #f5f5f5;
+}
+
+.menu-item.router-link-active {
+  color: #ff6600;
 }
 
 .pushBtn {
@@ -132,19 +132,10 @@ function logout(){
   gap: 8px;
   cursor: pointer;
   margin-top: auto;
-}
-
-.PagesBtn a{
-  color: inherit;
-  text-decoration: none;
-}
-
-:deep(a.router-link-active) {
-  color: #ff6600;
+  color: #171725;
 }
 
 .wordIcon {
   padding-right: 20px;
 }
-
 </style>

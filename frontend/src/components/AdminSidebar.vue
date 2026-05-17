@@ -6,8 +6,9 @@ import logo from '@/assets/icon.png'
 const router = useRouter()
 
 function logout(){
-  localStorage.removeItem('adminToken')
-  localStorage.removeItem('adminUser')
+  localStorage.removeItem('token')
+  localStorage.removeItem('role')
+  localStorage.removeItem('user')
   router.push('/admin-login')
 }
 
@@ -75,6 +76,7 @@ function logout(){
   gap: 8px;
   cursor: pointer;
   font-size: 15px;
+  color: #171725;
 }
 
 .loginOut {
@@ -83,6 +85,7 @@ function logout(){
   gap: 8px;
   cursor: pointer;
   margin-top: auto;
+  color: #171725;
 }
 
 .menuItem a{

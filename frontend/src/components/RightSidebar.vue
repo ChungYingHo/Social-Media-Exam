@@ -101,6 +101,7 @@ function getButtonStyle(user) {
   padding-left: 18px;
   padding-bottom: 16px;
   padding-top: 16px;
+  color: #000000;
 }
 
 .divider {
@@ -137,6 +138,7 @@ function getButtonStyle(user) {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100px;
+  color: #000000;
 }
 
 .account {

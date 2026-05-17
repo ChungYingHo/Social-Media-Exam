@@ -17,6 +17,7 @@ async function userLogin(account, password) {
       password
     })
     localStorage.setItem('token', data.token)
+    localStorage.setItem('role', 'user')
     localStorage.setItem('user', JSON.stringify(data.user))
     message.success('登入成功')
     router.push('/')
@@ -77,6 +78,7 @@ async function userLogin(account, password) {
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  margin-top: 40px;
 }
 
 .logo {

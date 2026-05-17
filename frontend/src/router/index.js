@@ -18,67 +18,64 @@ const router = createRouter({
       path: '/',
       name: 'Index',
       component: Index,
+      meta: { requiresAuth: true, role: 'user' }
     },
-
     {
       path: '/login',
       name: 'login',
       component: Login,
     },
-
     {
       path: '/admin-login',
       name: 'admin-login',
       component: AdminLogin,
     },
-
     {
       path: '/admin/posts',
       name: 'AdminPost',
       component: AdminPost,
+      meta: { requiresAuth: true, role: 'admin' }
     },
-
+    {
+      path: '/admin/users',
+      name: 'AdminUser',
+      component: AdminUser,
+      meta: { requiresAuth: true, role: 'admin' }
+    },
     {
       path: '/tweet/:id',
       name: 'TweetPages',
       component: TweetPages,
+      meta: { requiresAuth: true, role: 'user' }
     },
-
-    { path: '/admin/users',
-      name: 'AdminUser',
-      component: AdminUser
-    },
-
     {
       path: '/UserPages',
       name: 'userPages',
       component: UserPages,
+      meta: { requiresAuth: true, role: 'user' }
     },
-
     {
       path: '/user/follower',
       name: 'FollowPages',
       component: FollowPages,
+      meta: { requiresAuth: true, role: 'user' }
     },
-
     {
       path: '/regist',
       name: 'Regist',
       component: Regist,
     },
-
     {
       path: '/setting',
       name: 'Setting',
       component: Setting,
+      meta: { requiresAuth: true, role: 'user' }
     },
-
     {
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
       component: NotFoundPages,
     },
-
     {
       path: '/about',
       name: 'about',
@@ -92,15 +89,16 @@ const router = createRouter({
   ],
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from) => {
   const token = localStorage.getItem('token')
-  const publicPages = ['/login', '/regist', '/admin-login']
-  const isPublicPage = publicPages.includes(to.path)
+  const role = localStorage.getItem('role')
 
-  if (!token && !isPublicPage) {
-    next('/login')
-  } else {
-    next()
+  if (to.meta.requiresAuth && !token) {
+    return role === 'admin' ? '/admin-login' : '/login'
+  }
+
+  if (to.meta.role && to.meta.role !== role) {
+    return role === 'admin' ? '/admin/posts' : '/'
   }
 })
 

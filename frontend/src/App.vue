@@ -16,6 +16,7 @@ import { NMessageProvider, NDialogProvider } from 'naive-ui'
 
 #app {
   user-select: none;
+  background-color: white;
 }
 
 input, textarea {

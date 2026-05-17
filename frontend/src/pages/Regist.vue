@@ -13,9 +13,52 @@ const userEmail = ref('')
 const password = ref('')
 const passwordConfirm = ref('')
 
+const errorMsg = ref({
+  account: '',
+  name: '',
+  email: '',
+  password: '',
+  passwordConfirm: ''
+})
+
 const message = useMessage()
 
+function validate() {
+  let valid = true
+  errorMsg.value = { account: '', name: '', email: '', password: '', passwordConfirm: '' }
+
+  if (!account.value.trim()) {
+    errorMsg.value.account = '帳號不能空白'
+    valid = false
+  }
+  if (!userName.value.trim()) {
+    errorMsg.value.name = '名稱不能空白'
+    valid = false
+  }
+  if (!userEmail.value.trim()) {
+    errorMsg.value.email = 'Email 不能空白'
+    valid = false
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail.value)) {
+    errorMsg.value.email = 'Email 格式不正確'
+    valid = false
+  }
+  if (!password.value.trim()) {
+    errorMsg.value.password = '密碼不能空白'
+    valid = false
+  }
+  if (!passwordConfirm.value.trim()) {
+    errorMsg.value.passwordConfirm = '密碼確認不能空白'
+    valid = false
+  } else if (password.value !== passwordConfirm.value) {
+    errorMsg.value.passwordConfirm = '兩次密碼不一致'
+    valid = false
+  }
+
+  return valid
+}
+
 async function register() {
+  if (!validate()) return
   try {
     await axios.post('/api/users', {
       account: account.value,
@@ -55,6 +98,10 @@ function cancel() {
           placeholder='請輸入帳號'
           type='text'
         />
+        <span
+          v-if='errorMsg.account'
+          class='error'
+        >{{ errorMsg.account }}</span>
       </div>
 
       <div class='inputGroup'>
@@ -64,6 +111,10 @@ function cancel() {
           placeholder='請輸入使用者名稱'
           type='text'
         />
+        <span
+          v-if='errorMsg.name'
+          class='error'
+        >{{ errorMsg.name }}</span>
       </div>
 
       <div class='inputGroup'>
@@ -73,6 +124,10 @@ function cancel() {
           placeholder='請輸入Email'
           type='text'
         />
+        <span
+          v-if='errorMsg.email'
+          class='error'
+        >{{ errorMsg.email }}</span>
       </div>
 
       <div class='inputGroup'>
@@ -82,6 +137,10 @@ function cancel() {
           placeholder='請設定密碼'
           type='password'
         />
+        <span
+          v-if='errorMsg.password'
+          class='error'
+        >{{ errorMsg.password }}</span>
       </div>
 
       <div class='inputGroup'>
@@ -91,6 +150,10 @@ function cancel() {
           placeholder='請再次輸入密碼'
           type='password'
         />
+        <span
+          v-if='errorMsg.passwordConfirm'
+          class='error'
+        >{{ errorMsg.passwordConfirm }}</span>
       </div>
 
       <n-button
@@ -157,4 +220,9 @@ function cancel() {
   color: #888888;
 }
 
+.error {
+  font-size: 13px;
+  color: #ff6600;
+  margin-top: 2px;
+}
 </style>
