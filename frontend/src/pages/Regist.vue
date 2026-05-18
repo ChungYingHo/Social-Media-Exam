@@ -206,6 +206,7 @@ function cancel() {
   font-size: 20px;
   font-weight: bold;
   text-align: center;
+  color: #171725;
 }
 
 .inputGroup {

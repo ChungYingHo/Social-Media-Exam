@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useRouter } from 'vue-router'
 import logo from '@/assets/icon.png'
 
-const name = '登入Alphitter'
+const name = '登入Zuno'
 const router = useRouter()
 
 const message = useMessage()
